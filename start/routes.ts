@@ -20,12 +20,19 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+Route.group( () => {
+  Route.get('/posts', 'PostsController.index');
+  Route.get('/posts/:id', 'PostsController.show');
+  Route.post('/posts', 'PostsController.store');
+  Route.patch('/posts/:id', 'PostsController.update');
+  Route.delete('/posts/:id', 'PostsController.delete');
+}).middleware('auth');
 
-Route.get('/posts', 'PostsController.index');
-Route.get('/posts/:id', 'PostsController.show');
-Route.post('/posts', 'PostsController.store');
-Route.patch('/posts/:id', 'PostsController.update');
-Route.delete('/posts/:id', 'PostsController.delete');
+Route.group(() => {
+  Route.get('/comments', 'CommentsController.index');
+  Route.get('/comments/:id', 'CommentsController.show');
+  Route.post('/comments', 'CommentsController.store');
+  Route.patch('/comments/:id', 'CommentsController.update');
+  Route.delete('/comments/:id', 'CommentsController.delete');
+}).middleware('auth');
+

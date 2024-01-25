@@ -1,12 +1,11 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Post from 'App/Models/Post'
-import { reporters } from 'tests/bootstrap';
 
 
 export default class PostsController {
   public async index({response}: HttpContextContract) {
     try {
-      const posts = await Post.all();
+      const posts = await Post.query().preload('comments');
       return response.status(200).json(posts);
     }
     catch (err) {

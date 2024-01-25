@@ -19,5 +19,6 @@ export default class Post extends BaseModel {
   public updatedAt: DateTime
 
   @hasMany(() => Comment)
-  public comments: HasMany<typeof Comment>
+  public comments: HasMany<typeof Comment>;
 }
+
