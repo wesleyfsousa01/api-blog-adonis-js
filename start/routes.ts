@@ -26,7 +26,7 @@ Route.group( () => {
   Route.post('/posts', 'PostsController.store');
   Route.patch('/posts/:id', 'PostsController.update');
   Route.delete('/posts/:id', 'PostsController.delete');
-}).middleware('auth');
+})
 
 Route.group(() => {
   Route.get('/comments', 'CommentsController.index');
@@ -34,5 +34,13 @@ Route.group(() => {
   Route.post('/comments', 'CommentsController.store');
   Route.patch('/comments/:id', 'CommentsController.update');
   Route.delete('/comments/:id', 'CommentsController.delete');
-}).middleware('auth');
+})
+
+Route.group(() => {
+  Route.get('/users', 'UsersController.index');
+  Route.get('/users/:id', 'UsersController.show');
+  Route.post('/users', 'UsersController.store');
+  Route.patch('/users/:id', 'UsersController.update');
+  Route.delete('/users/:id', 'UsersController.delete');
+})
 
